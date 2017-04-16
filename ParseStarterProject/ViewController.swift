@@ -28,8 +28,11 @@ var signUpMode = true
     @IBOutlet weak var UsernameTextField: UITextField!
     @IBOutlet weak var PasswordTextField: UITextField!
     @IBOutlet weak var isDriverSwitch: UISwitch!
+    @IBOutlet weak var RiderLabel: UILabel!
     
-    @IBOutlet weak var signupOrLogin: UIButton!
+    @IBOutlet weak var DriverLabel: UILabel!
+  
+    @IBOutlet weak var SignupOrLoginButton: UIButton!
     
     @IBAction func signupOrLogin(_ sender: Any) {
         
@@ -63,6 +66,21 @@ var signUpMode = true
                     
                     else{
                         print ("Sign Up Successfuel")
+                        
+                        if let isDriver = PFUser.current()?["isDriver"] as? Bool{
+                            
+                            if isDriver {
+                            
+                        }
+                        
+                        else{
+                            
+                              self.performSegue(withIdentifier: "showRiderViewController", sender: self)
+                            
+                        }
+                        
+                    }
+                    
                     }
                 
                 
@@ -87,7 +105,22 @@ var signUpMode = true
                     }
                     
                     else{
-                        print ("Log In Successfuel")
+                        print ("Log In Successfull")
+                        
+                        if let isDriver = PFUser.current()?["isDriver"] as? Bool{
+                            
+                            if isDriver {
+                                
+                            }
+                                
+                            else{
+                                
+                                self.performSegue(withIdentifier: "showRiderViewController", sender: self)
+                                
+                            }
+                            
+                        }
+
                     }
                     
                     
@@ -100,16 +133,40 @@ var signUpMode = true
         
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let isDriver = PFUser.current()?["isDriver"] as? Bool{
+            
+            if isDriver {
+                
+            }
+                
+            else{
+                
+                self.performSegue(withIdentifier: "showRiderViewController", sender: self)
+                
+            }
+            
+        }
+
+    }
+    
     @IBOutlet weak var signupSwitchButton: UIButton!
     
     @IBAction func switchSignupMode(_ sender: Any) {
         
         if signUpMode{
             
-            signupOrLogin.setTitle("log In", for: [])
+            SignupOrLoginButton.setTitle("log In", for: [])
             
             signupSwitchButton.setTitle("Switch to Log Out", for: [])
             signUpMode = false
+            
+            
+            isDriverSwitch.isHidden = true
+            DriverLabel.isHidden = true
+            RiderLabel.isHidden = true
+            
             
             
             
@@ -117,10 +174,15 @@ var signUpMode = true
         
         else{
             
-            signupOrLogin.setTitle("Sign Up", for: [])
+            SignupOrLoginButton.setTitle("Sign Up", for: [])
             
             signupSwitchButton.setTitle("Switch To Log In", for: [])
             signUpMode = true
+            
+            isDriverSwitch.isHidden = false
+            DriverLabel.isHidden = false
+            RiderLabel.isHidden = false
+
             
         }
         
