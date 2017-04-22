@@ -26,7 +26,6 @@
                                 <rect key="frame" x="156" y="32" width="44" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="6HW-Vc-3uT"/>
-                                    <constraint firstAttribute="width" constant="44" id="PcN-8b-gPC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -88,7 +87,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKk-rX-bWB">
-                                <rect key="frame" x="179.5" y="323" width="16" height="21"/>
+                                <rect key="frame" x="180" y="323" width="16" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="bru-iu-pBh"/>
                                     <constraint firstAttribute="width" constant="16" id="uGX-5H-zjc"/>
@@ -122,7 +121,6 @@
                             <constraint firstItem="BAA-c0-HM2" firstAttribute="leading" secondItem="ege-B9-A91" secondAttribute="trailing" constant="39" id="D7l-mG-W62"/>
                             <constraint firstItem="vya-cr-Yan" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="144" id="Djm-g8-NbK"/>
                             <constraint firstItem="vya-cr-Yan" firstAttribute="top" secondItem="ege-B9-A91" secondAttribute="bottom" constant="30" id="HKq-4H-quf"/>
-                            <constraint firstItem="un6-4Y-xnl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="140" id="M26-0g-Ixh"/>
                             <constraint firstItem="un6-4Y-xnl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="PGK-SU-jiB"/>
                             <constraint firstItem="BKk-rX-bWB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q4M-8N-246"/>
                             <constraint firstItem="1vx-oB-xzw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Qwe-4y-2jI"/>
@@ -137,11 +135,10 @@
                             <constraint firstItem="L4v-hJ-oGv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="17" id="bft-3W-v5k"/>
                             <constraint firstItem="L4v-hJ-oGv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="17" id="elP-hd-1TI"/>
                             <constraint firstItem="ege-B9-A91" firstAttribute="leading" secondItem="6OV-Xd-iB0" secondAttribute="trailing" constant="28" id="f64-sX-lRg"/>
-                            <constraint firstItem="un6-4Y-xnl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g3H-vf-m25"/>
                             <constraint firstItem="LCt-0O-gaq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iua-pW-0G0"/>
+                            <constraint firstItem="un6-4Y-xnl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="156" id="muM-Fe-Ld5"/>
                             <constraint firstItem="1vx-oB-xzw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qO0-7g-uiF"/>
                             <constraint firstItem="LCt-0O-gaq" firstAttribute="top" secondItem="BKk-rX-bWB" secondAttribute="bottom" constant="8" id="rbb-bz-iKM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="un6-4Y-xnl" secondAttribute="trailing" constant="140" id="uh2-51-qVV"/>
                             <constraint firstItem="1vx-oB-xzw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="yAr-qa-FBQ"/>
                         </constraints>
                     </view>
@@ -172,9 +169,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zly-1Q-td0">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zly-1Q-td0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Uber" id="ncC-oR-afu">
                                         <barButtonItem key="leftBarButtonItem" title="Logout" id="6EW-Il-f3s">
@@ -185,13 +181,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nvn-VO-QQk">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nvn-VO-QQk">
                                 <rect key="frame" x="16" y="106" width="343" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="344" id="tFN-ic-iZ9"/>
+                                </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujb-aP-AL8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujb-aP-AL8">
                                 <rect key="frame" x="145" y="526" width="84" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Call an Uber"/>
                                 <connections>
                                     <action selector="callAnUber:" destination="IAF-6k-XaP" eventType="touchUpInside" id="WYz-sk-H4a"/>
@@ -199,6 +196,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nvn-VO-QQk" firstAttribute="leading" secondItem="2dA-xX-DCo" secondAttribute="leadingMargin" id="0RM-2D-Wcg"/>
+                            <constraint firstItem="Nvn-VO-QQk" firstAttribute="top" secondItem="2dA-xX-DCo" secondAttribute="top" constant="106" id="2TJ-kL-oI4"/>
+                            <constraint firstItem="Zly-1Q-td0" firstAttribute="top" secondItem="XSJ-TV-jjH" secondAttribute="bottom" id="RMu-CV-JZI"/>
+                            <constraint firstItem="Zly-1Q-td0" firstAttribute="centerX" secondItem="Nvn-VO-QQk" secondAttribute="centerX" id="T4N-2N-yQm"/>
+                            <constraint firstItem="ujb-aP-AL8" firstAttribute="top" secondItem="Nvn-VO-QQk" secondAttribute="bottom" constant="76" id="YuE-Qo-dgw"/>
+                            <constraint firstItem="Nvn-VO-QQk" firstAttribute="centerX" secondItem="ujb-aP-AL8" secondAttribute="centerX" id="aEY-kP-hhq"/>
+                            <constraint firstItem="Nvn-VO-QQk" firstAttribute="trailing" secondItem="2dA-xX-DCo" secondAttribute="trailingMargin" id="bWR-du-ocu"/>
+                            <constraint firstItem="Zly-1Q-td0" firstAttribute="leading" secondItem="2dA-xX-DCo" secondAttribute="leading" id="fgW-Wu-c3b"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="callAnUberButton" destination="ujb-aP-AL8" id="CgI-15-hax"/>
