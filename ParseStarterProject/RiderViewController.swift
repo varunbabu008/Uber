@@ -16,13 +16,47 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
+    var riderRequestActive = true
+    
     @IBOutlet weak var map: MKMapView!
     
     @IBOutlet weak var callAnUberButton: UIButton!
     
     @IBAction func callAnUber(_ sender: Any) {
         
+        
+        if riderRequestActive{
+            
+            callAnUberButton.setTitle("Call an Uber", for: [])
+            
+            riderRequestActive = false
+            
+            let query = PFQuery(className: "RiderRequest")
+            query.whereKey("username", equalTo: (PFUser.current()?.username)!)
+            
+            query.findObjectsInBackground(block: { (objects, error) in
+                
+                if let riderRequests = objects{
+                    
+                    for riderRequest in riderRequests{
+                            
+                            riderRequest.deleteInBackground()
+                            
+                            
+                        }
+                    }
+                
+            })
+        
+        }
+        
+        else{
         if userLocation.latitude != 0 && userLocation.longitude != 0 {
+            
+            riderRequestActive = true
+            
+            self.callAnUberButton.setTitle("Cancel Uber", for: [])
+
             
             let riderRequest =  PFObject(className:"RiderRequest")
         
@@ -36,8 +70,14 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
                     
                     print("Called an Uber")
                     
+                    
                 }
                 else{
+                    
+                    self.callAnUberButton.setTitle("Call an Uber", for: [])
+                    
+                    self.riderRequestActive = false
+
                     
                     self.displayAlert(title: "Could not call uber", message: "Please try again")
                     
@@ -53,6 +93,7 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             
         }
         
+    }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +127,27 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         locationManager.startUpdatingLocation()
         
+        callAnUberButton.isHidden = true
+        
+        let query = PFQuery(className: "RiderRequest")
+        query.whereKey("username", equalTo: (PFUser.current()?.username)!)
+        
+        
+        query.findObjectsInBackground(block: { (objects, error) in
+            
+            if let riderRequests = objects{
+                
+                self.riderRequestActive = true
+                
+                self.callAnUberButton.setTitle("Cancel an Uber", for: [])
+                
+            }
+            
+            self.callAnUberButton.isHidden = false
+            
+        })
+
+        
     
         
         
@@ -117,6 +179,28 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             annotation.title = "Your location"
             
             self.map.addAnnotation(annotation)
+            
+            
+            // Updating the users location
+            let query = PFQuery(className: "RiderRequest")
+            query.whereKey("username", equalTo: (PFUser.current()?.username)!)
+            
+            
+            query.findObjectsInBackground(block: { (objects, error) in
+                
+                if let riderRequests = objects{
+                    
+                    for riderRequest in riderRequests{
+                        
+                        riderRequest["currentLocation"] = PFGeoPoint(latitude: self.userLocation.latitude, longitude: self.userLocation.longitude)
+                        
+                        riderRequest.saveInBackground()
+                        
+                        
+                    }
+                }
+                
+            })
             
             
             
