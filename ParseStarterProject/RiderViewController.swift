@@ -60,7 +60,19 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
             self.map.setRegion(region, animated: true)
             
-            self.map.showsUserLocation = true            
+            self.map.removeAnnotations(self.map.annotations) 
+            
+            self.map.showsUserLocation = true
+            
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = center
+            
+            annotation.title = "Your location"
+            
+            self.map.addAnnotation(annotation)
+            
+            
             
         }
         
