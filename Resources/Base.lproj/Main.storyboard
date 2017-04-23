@@ -217,6 +217,42 @@
             </objects>
             <point key="canvasLocation" x="1166" y="-593"/>
         </scene>
+        <!--Rider Location View Controller-->
+        <scene sceneID="Lqi-E6-jzl">
+            <objects>
+                <viewController id="Jeg-eq-5GP" customClass="RiderLocationViewController" customModule="ParseStarterProject_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eqN-78-aYp"/>
+                        <viewControllerLayoutGuide type="bottom" id="sgZ-HV-zuW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="22I-vm-rXo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wFq-gT-3og">
+                                <rect key="frame" x="35" y="95" width="311" height="301"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXb-dY-Vt4">
+                                <rect key="frame" x="133" y="469" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Accept Request"/>
+                                <connections>
+                                    <action selector="acceptRequest:" destination="Jeg-eq-5GP" eventType="touchUpInside" id="ieG-Yx-8Qm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptRequestButton" destination="OXb-dY-Vt4" id="6PS-Xv-Lbi"/>
+                        <outlet property="map" destination="wFq-gT-3og" id="e7I-Is-pDK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHX-Xb-cPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2773.5999999999999" y="572.56371814092961"/>
+        </scene>
         <!--Request List-->
         <scene sceneID="lWg-eg-1YP">
             <objects>
@@ -233,6 +269,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Jeg-eq-5GP" kind="show" identifier="showRiderLocationSegue" id="X1g-wY-P0M"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -250,7 +289,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bl8-yD-8Jk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="617"/>
+            <point key="canvasLocation" x="1969" y="573"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cPC-pb-RB9">

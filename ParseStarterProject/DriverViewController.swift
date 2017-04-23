@@ -32,6 +32,21 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
             self.navigationController?.navigationBar.isHidden = true
             
         }
+        else if segue.identifier == "showRiderLocationSegue"{
+            
+            if let destination = segue.destination as? RiderLocationViewController{
+                
+                if let row = tableView.indexPathForSelectedRow?.row{
+                
+                    destination.requestLocation = requestLocations[row]
+                    
+                    destination.requestUsername = requestUsernames[row]
+                
+                
+                }
+            }
+            
+        }
         
     }
     
@@ -86,14 +101,17 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
                         
                         if let username = riderRequest["username"] as? String{
                             
-                            self.requestUsernames.append(username)
+                            if riderRequest["driverResponded"] == nil{
+                                
+                           
                             
-                            self.requestLocations.append(CLLocationCoordinate2D(latitude: (riderRequest["currentLocation"] as AnyObject).latitude, longitude: (riderRequest["currentLocation"] as AnyObject).longitude))
+                                self.requestUsernames.append(username)
+                            
+                                self.requestLocations.append(CLLocationCoordinate2D(latitude: (riderRequest["currentLocation"] as AnyObject).latitude, longitude: (riderRequest["currentLocation"] as AnyObject).longitude))
+                                
+                             }
                             
                         }
-                        
-                        
-                        
                         
                     }
                     
