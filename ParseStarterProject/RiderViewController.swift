@@ -92,12 +92,16 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             displayAlert(title: "Could not call an uber", message: "Cannot detect your location")
             
         }
-        
+         
     }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "logoutSegue" {
+            
+            locationManager.stopUpdatingLocation()
+            
             PFUser.logOut()
     }
     }
@@ -105,7 +109,7 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     
     
     func displayAlert(title: String, message: String){
-        
+         
         let alertcontroller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alertcontroller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

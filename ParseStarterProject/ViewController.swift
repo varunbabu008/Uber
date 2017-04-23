@@ -70,6 +70,9 @@ var signUpMode = true
                         if let isDriver = PFUser.current()?["isDriver"] as? Bool{
                             
                             if isDriver {
+                                
+                                self.performSegue(withIdentifier: "showDriverViewController", sender: self)
+
                             
                         }
                         
@@ -111,6 +114,9 @@ var signUpMode = true
                             
                             if isDriver {
                                 
+                                self.performSegue(withIdentifier: "showDriverViewController", sender: self)
+
+                                
                             }
                                 
                             else{
@@ -138,6 +144,8 @@ var signUpMode = true
         if let isDriver = PFUser.current()?["isDriver"] as? Bool{
             
             if isDriver {
+                
+                performSegue(withIdentifier: "showDriverViewController", sender: self)
                 
             }
                 
