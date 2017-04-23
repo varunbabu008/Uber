@@ -139,12 +139,16 @@ class RiderViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         
         query.findObjectsInBackground(block: { (objects, error) in
             
-            if let riderRequests = objects{
-                
+            if let objects = objects{
+                if objects.count > 0
+                {
+                    
+               
                 self.riderRequestActive = true
                 
                 self.callAnUberButton.setTitle("Cancel an Uber", for: [])
-                
+               
+                }
             }
             
             self.callAnUberButton.isHidden = false

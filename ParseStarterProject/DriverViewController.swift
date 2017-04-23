@@ -16,10 +16,16 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
     
     var requestUsernames = [String]()
     
+    var requestLocations = [CLLocationCoordinate2D]()
+    
+    var userLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
         if segue.identifier == "driverLogoutSegue" {
+            
+            locationManager.stopUpdatingLocation()
             
             PFUser.logOut()
             
@@ -61,7 +67,7 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
             
             let query = PFQuery(className: "RiderRequest")
             
-            print(location)
+            userLocation = location
         
             
             query.whereKey("currentLocation", nearGeoPoint: PFGeoPoint(latitude: location.latitude, longitude: location.longitude))
@@ -74,11 +80,15 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
                     
                     self.requestUsernames.removeAll()
                     
+                    self.requestLocations.removeAll()
+                    
                     for riderRequest in riderRequests{
                         
                         if let username = riderRequest["username"] as? String{
                             
                             self.requestUsernames.append(username)
+                            
+                            self.requestLocations.append(CLLocationCoordinate2D(latitude: (riderRequest["currentLocation"] as AnyObject).latitude, longitude: (riderRequest["currentLocation"] as AnyObject).longitude))
                             
                         }
                         
@@ -123,7 +133,17 @@ class DriverViewController: UITableViewController, CLLocationManagerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel?.text = requestUsernames[indexPath.row]
+        // Dind distance between userlocation and request location
+        
+        let driverCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        
+        let riderCLLocation = CLLocation(latitude: requestLocations[indexPath.row].latitude, longitude: requestLocations[indexPath.row].longitude)
+        
+        let distance = driverCLLocation.distance(from: riderCLLocation) / 1000
+        
+        let roundedDistance = round(distance * 100)/100
+        
+        cell.textLabel?.text = requestUsernames[indexPath.row] + " - \(roundedDistance) km away"
 
         return cell
     }
